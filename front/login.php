@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["user_id"]) && isset($_SESSION["role"])){
+if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
     if ($_SESSION["role"] === "doctor") {
         header("Location: ../front/doctorDashboard.php");
     } else {
@@ -9,7 +9,13 @@ if (isset($_SESSION["user_id"]) && isset($_SESSION["role"])){
     exit();
 } 
 ?>
-
+<?php
+session_start();
+if(isset($_SESSION["loggedIn"])&& $_SESSION["loggedIn"]==true){
+header("Location:front/home.php");
+exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

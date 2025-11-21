@@ -112,7 +112,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <!-- Doctor Info -->
             <div class="card-header">
-                <img src="../uploads/doctors/<?php echo $t["Photo"]; ?>">
+                <img src="../medias/drimages/<?php echo $t["Photo"]; ?>">
                 <div class="info">
                     <h2><?php echo $t["Test_name"]; ?></h2>
                     <p><strong>Doctor:</strong> Dr. <?php echo $t["First_name"] . " " . $t["Last_name"]; ?></p>
@@ -133,7 +133,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <!-- Attachment -->
             <?php if (!empty($t["Attachment"])): ?>
-                <a href="../uploads/tests/<?php echo $t["Attachment"]; ?>" target="_blank" class="attachment-btn">
+                <a href="../medias/tests/<?php echo $t["Attachment"]; ?>" target="_blank" class="attachment-btn">
                     View Attachment
                 </a>
             <?php endif; ?>
