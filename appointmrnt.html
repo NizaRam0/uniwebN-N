@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f7ff;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #0083e4;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        select, input[type="date"], button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #0083e4;
+            color: white;
+            font-size: 16px;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #006bbd;
+        }
+        .time-slots {
+            margin-top: 15px;
+        }
+        .time-slot {
+            padding: 10px;
+            margin: 6px 0;
+            border: 1px solid #0083e4;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .time-slot.selected {
+            background: #0083e4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Book an Appointment</h2>
+
+    <!-- STEP 1: Select Doctor -->
+    <label>Select Doctor</label>
+    <select id="doctorSelect">
+        <!-- PHP WILL FILL THIS -->
+        <!-- Example -->
+        <option value="">-- Choose a Doctor --</option>
+        <option value="1">Dr. Sarah Johnson – Cardiology</option>
+        <option value="2">Dr. James Smith – Neurology</option>
+        <option value="3">Dr. Emily Davis – Pediatrics</option>
+    </select>
+
+    <!-- STEP 2: Select Date -->
+    <label>Select Date</label>
+    <input type="date" id="appointmentDate">
+
+    <!-- STEP 3: Time Slots -->
+    <div class="time-slots" id="timeSlots"></div>
+
+    <!-- STEP 4: Submit Button -->
+    <button onclick="submitAppointment()">Book Appointment</button>
+</div>
+
+<script>
+// DEMO doctor's free time
+// In PHP this will be fetched from database!
+const doctorSchedules = {
+    1: ["09:00", "09:30", "11:00", "14:00"],       // Dr Sarah
+    2: ["10:00", "12:00", "13:00", "16:00"],       // Dr James
+    3: ["08:00", "08:30", "09:00", "11:30"]        // Dr Emily
+};
+
+document.getElementById("doctorSelect").addEventListener("change", showTimeSlots);
+
+function showTimeSlots() {
+    let doc = document.getElementById("doctorSelect").value;
+    let container = document.getElementById("timeSlots");
+
+    container.innerHTML = "";
+
+    if (doc === "") return;
+
+    doctorSchedules[doc].forEach(time => {
+        let div = document.createElement("div");
+        div.classList.add("time-slot");
+        div.innerText = time;
+        div.onclick = () => {
+            document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+            div.classList.add('selected');
+        };
+        container.appendChild(div);
+    });
+}
+
+// SUBMIT APPOINTMENT
+function submitAppointment() {
+    let doctor_id = document.getElementById("doctorSelect").value;
+    let date = document.getElementById("appointmentDate").value;
+    let time = document.querySelector('.time-slot.selected')?.innerText;
+
+    if (!doctor_id || !date || !time) {
+        alert("Please select a doctor, date, and time.");
+        return;
+    }
+
+    // SEND TO PHP
+    fetch("save_appointment.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            doctor_id: doctor_id,
+            date: date,
+            time: time
+        })
+    })
+    .then(res => res.text())
+    .then(data => alert(data));
+}
+</script>
+
+</body>
+</html>
