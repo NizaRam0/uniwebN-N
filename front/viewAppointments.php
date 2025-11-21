@@ -36,7 +36,7 @@ $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display:flex; justify-content:space-between; align-items:center;
             padding:18px 60px; background:white; border-bottom:1px solid #e5e5e5;
         }
-        .navbar img { width:44px; }
+        .navbar img { width:15%; }
         .login-btn {
             background:#005bbb; color:white; padding:10px 22px; border-radius:6px; text-decoration:none;
         }
@@ -96,7 +96,7 @@ $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <img src="assets/logo.png">
+    <img src="../medias/logo.png">
 <div >
     <a class="login-btn" href="../front/patientDashboard.php">Dashboard</a>
     <a class="login-btn" href="../booking/Booking-Department.php">Book Appointment</a>
@@ -113,7 +113,7 @@ $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php foreach ($appointments as $app): ?>
         <div class="appointment-card">
-            <img src="../uploads/doctors/<?php echo $app['Photo']; ?>">
+            <img src="../medias/drimages/<?php echo $app['Photo']; ?>">
 
             <div class="info">
                 <h2>Dr. <?php echo $app["First_name"] . " " . $app["Last_name"]; ?></h2>

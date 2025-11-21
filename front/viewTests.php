@@ -35,7 +35,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display:flex; justify-content:space-between;
             padding:18px 60px; background:white; border-bottom:1px solid #e5e5e5;
         }
-        .navbar img { width:44px; }
+        .navbar img { width:15%; }
 
         h1 {
             text-align:center; margin-top:40px;
@@ -94,7 +94,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div class="navbar">
-    <img src="assets/logo.png">
+    <img src="../medias/logo.png">
     <a class="login-btn" href="patientDashboard.php" style="background:#005bbb;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;">Dashboard</a>
 </div>
 

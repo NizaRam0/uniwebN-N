@@ -2,17 +2,15 @@
 session_start();
 if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
     if ($_SESSION["role"] === "doctor") {
-        header("Location: ../front/doctorDashboard.php");
+        header("Location: doctorDashboard.php");
     } else {
-        header("Location: ../front/patientDashboard.php");
+        header("Location: patientDashboard.php");
     }
     exit();
 } 
-?>
-<?php
-session_start();
-if(isset($_SESSION["loggedIn"])&& $_SESSION["loggedIn"]==true){
-header("Location:front/home.php");
+
+if(isset($_SESSION["id"])){
+header("Location:homePage.php");
 exit();
 }
 ?>
@@ -21,7 +19,7 @@ exit();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="styling.css">
+	<link rel="stylesheet" href="loginSignup.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">

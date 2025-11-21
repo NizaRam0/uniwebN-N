@@ -6,6 +6,7 @@ if (!isset($_SESSION["id"])) {
     header("Location: ../front/login.php");
     exit();
 }
+
 if ($_SESSION["role"] !== "patient") {
     header("Location: doctorDashboard.php");
     exit();

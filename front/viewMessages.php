@@ -56,7 +56,7 @@ usort($messages, fn($a, $b) => strtotime($b["Date"]) - strtotime($a["Date"]));
             display:flex; justify-content:space-between;
             padding:18px 60px; background:white; border-bottom:1px solid #e5e5e5;
         }
-        .navbar img { width:44px; }
+        .navbar img { width:15%; }
 
         h1 {
             text-align:center; margin-top:40px;
@@ -102,8 +102,8 @@ usort($messages, fn($a, $b) => strtotime($b["Date"]) - strtotime($a["Date"]));
 <body>
 
 <div class="navbar">
-    <img src="assets/logo.png">
-    <a href="patientDashboard.php" class="login-btn" style="background:#005bbb;color:white;padding:10px 22px;border-radius:8px;text-decoration:none;">Dashboard</a>
+<img src="../medias/logo.png">
+<a href="patientDashboard.php" class="login-btn" style="background:#005bbb;color:white;padding:10px 22px;border-radius:8px;text-decoration:none;">Dashboard</a>
 </div>
 
 <h1>Your Messages</h1>
@@ -120,7 +120,7 @@ usort($messages, fn($a, $b) => strtotime($b["Date"]) - strtotime($a["Date"]));
         <div class="card">
 
             <div class="card-header">
-                <img src="../uploads/doctors/<?php echo $msg['Photo']; ?>">
+                <img src="../medias/drimages/<?php echo $msg['Photo']; ?>">
                 <div>
                     <div class="title"><?php echo $msg['Title']; ?></div>
                     <div class="subtitle">

@@ -21,7 +21,7 @@ elseif(isset($_SESSION["id"])&& $_SESSION["role"] === "doctor") {
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: #ffffff;
+    
 }
 
 /* CONTAINER */
@@ -29,7 +29,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 60px 40px;
-    background: #ffffff;
+    background-color:#eef6ff; /* Light soft blue */
 }
 
 /* CARD */

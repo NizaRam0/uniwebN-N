@@ -69,7 +69,7 @@ case "doctors_by_department":
 // ALL DEPARTMENTS
 // ===========================
 case "departments":
-    $sql = "SELECT Department_id, Department_name FROM Department";
+    $sql = "SELECT Department_id, Department_name, Photo FROM Department";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

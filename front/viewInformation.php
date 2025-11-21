@@ -38,7 +38,7 @@ if (!$patient) {
             display:flex; justify-content:space-between;
             padding:18px 60px; background:white; border-bottom:1px solid #e5e5e5;
         }
-        .navbar img { width:44px; }
+        .navbar img { width:15%; }
 
         h1 {
             text-align:center; margin-top:40px;
@@ -77,7 +77,7 @@ if (!$patient) {
 <body>
 
 <div class="navbar">
-    <img src="assets/logo.png">
+    <img src="../medias/logo.png">
     <a href="patientDashboard.php" class="login-btn" style="background:#005bbb;color:white;padding:10px 22px;border-radius:8px;text-decoration:none;">
         Dashboard
     </a>

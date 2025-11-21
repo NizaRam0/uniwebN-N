@@ -33,7 +33,7 @@ $pres = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display:flex; justify-content:space-between; padding:18px 60px;
             background:white; border-bottom:1px solid #e5e5e5;
         }
-        .navbar img { width:44px; }
+        .navbar img { width:15%; }
 
         h1 { text-align:center; margin-top:40px; color:#003e74; }
 
@@ -77,8 +77,8 @@ $pres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div class="navbar">
-    <img src="assets/logo.png">
-    <a class="login-btn" href="dashboard.php">Dashboard</a>
+    <img src="../medias/logo.png">
+    <a class="login-btn" href="patientDashboard.php">Dashboard</a>
 </div>
 
 <h1>Your Prescriptions</h1>
@@ -93,7 +93,7 @@ $pres = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($pres as $p): ?>
         <div class="card">
 
-            <img src="../uploads/doctors/<?php echo $p["Photo"]; ?>">
+            <img src="../medias/drimages/<?php echo $p["Photo"]; ?>">
 
             <div class="info">
                 <h2><?php echo $p["Medication_name"]; ?></h2>

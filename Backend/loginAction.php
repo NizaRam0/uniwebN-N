@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($isDoctor) {
         $_SESSION["role"] = "doctor";
         $_SESSION["doctor_id"] = $user["Doctor_id"];
+        $_SESSION["id"] = $user["Doctor_id"] ;
 
         header("Location: ../front/doctorDashboard.php");
         exit();
