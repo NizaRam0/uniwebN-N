@@ -264,7 +264,7 @@ switch ($type) {
         $attachmentPath = null;
 
         if (!empty($_FILES["attachment"]["name"])) {
-            $uploadDir = __DIR__ . "/../uploads/tests/";
+            $uploadDir = __DIR__ . "/../medias/tests/";
             if (!is_dir($uploadDir)) {
                 @mkdir($uploadDir, 0777, true);
             }
@@ -274,7 +274,7 @@ switch ($type) {
 
             if (move_uploaded_file($_FILES["attachment"]["tmp_name"], $targetPath)) {
                 // Path to store in DB (relative)
-                $attachmentPath = "uploads/tests/" . $fileName;
+                $attachmentPath = "medias/tests/" . $fileName;
             }
         }
 

@@ -40,6 +40,7 @@ $doctors = $stmtDoc->fetchAll(PDO::FETCH_ASSOC);
         <a href="#about" class="nav-link">About</a>
         <a href="#departments" class="nav-link">Departments</a>
         <a href="#team" class="nav-link">Our Team</a>
+
     </div>
 
     <?php if ($isLoggedIn): ?>
@@ -127,6 +128,9 @@ $doctors = $stmtDoc->fetchAll(PDO::FETCH_ASSOC);
 <!-- FOOTER -->
 <div class="footer">
     © 2025 MediCare Hub — All Rights Reserved
+
+    <a style="color:white; margin-left:2%;"href="contactForm.php" >contact Us!</a>
+
 </div>
 
 <!-- SMOOTH SCROLL + ACTIVE LINK JS -->

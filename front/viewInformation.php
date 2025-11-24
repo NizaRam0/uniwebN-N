@@ -124,7 +124,7 @@ if (!$patient) {
         <div class="value"><?php echo $patient["Pre_existing_condition"]; ?></div>
     </div>
 
-    <a href="#" class="edit-btn">Edit Information</a>
+    <a href="editinformation.php" class="edit-btn">Edit Information</a>
 
 </div>
 
