@@ -99,11 +99,13 @@ body {
 
 /* ERROR MSG */
 .error {
+    display: block;
     background: #ffdddd;
     color: #d8000c;
     padding: 12px;
     margin-top: 15px;
-    width: 330px;
+    width: 100%;           
+    box-sizing: border-box; 
     text-align: center;
     border-radius: 8px;
     border-left: 4px solid #d8000c;

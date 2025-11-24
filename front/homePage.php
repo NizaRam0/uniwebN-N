@@ -99,7 +99,7 @@ $doctors = $stmtDoc->fetchAll(PDO::FETCH_ASSOC);
 
     <div style="display:flex; flex-wrap:wrap; gap:25px; justify-content: space-around;">
         <?php foreach ($departments as $d): ?>
-            <div class="dash-card" style="width:28%; text-align:center;">
+            <div class="dash-card" style="width:32%; text-align:center;">
                 <h3><?php echo htmlspecialchars($d['Department_name']); ?></h3>
                 <p><?php echo htmlspecialchars($d['Description']); ?></p>
             </div>
@@ -113,11 +113,11 @@ $doctors = $stmtDoc->fetchAll(PDO::FETCH_ASSOC);
 
     <div style="display:flex; flex-wrap:wrap; gap:25px; justify-content: space-around;">
         <?php foreach ($doctors as $doc): ?>
-            <div class="dash-card" style="width:28%; text-align:center;">
+            <div class="dash-card" >
                 <img src="../medias/drimages/<?php echo $doc['Photo']; ?>" 
                      style="width:110px; height:110px; border-radius:50%; object-fit:cover; margin-bottom:12px;">
                 <h3><?php echo $doc['First_name'] . " " . $doc['Last_name']; ?></h3>
-                <p style="padding-left:15%"><?php echo $doc['Specialty']; ?></p>
+                <p ><?php echo $doc['Specialty']; ?></p>
                 <a href="doctorProfile.php?id=<?php echo $doc['Doctor_id']; ?>" class="btn-small">View Profile</a>
             </div>
         <?php endforeach; ?>

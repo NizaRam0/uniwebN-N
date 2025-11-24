@@ -2,13 +2,14 @@
 
 
 body {
+    padding-top: 15px;
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background: #ffffff;
         }
 
         .navbar {
-            position: fixed;
+            position:fixed;
             top: 0;
             left: 0;
             width: 90%;              
@@ -190,7 +191,7 @@ body {
 }
 
 .dash-card {
-    width: 30%;
+    width: 28%;
     background: #ffffff;
     padding: 25px;
     border-radius: 10px;
@@ -202,6 +203,7 @@ body {
     font-size: 20px;
     color: #003e74;
     margin-bottom: 12px;
+    
 }
 
 .dash-card p {
@@ -222,4 +224,176 @@ body {
 
 .btn-small:hover {
     background: #004c94;
+}
+
+/* ==========================================================
+   BASE FIXES (apply to all screens)
+   ========================================================== */
+   .navbar {
+    width: 100%;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+
+.hero {
+    box-sizing: border-box;
+}
+
+/* ==========================================================
+   📌 TABLETS (max-width: 1024px)
+   ========================================================== */
+@media (max-width: 1024px) {
+
+    .navbar {
+        padding: 15px 30px;
+    }
+
+    .hero {
+        padding: 60px 30px;
+    }
+
+    .hero-image img {
+        width: 280px;
+    }
+
+    .features {
+        gap: 20px;
+        padding: 40px 20px;
+    }
+
+    .feature-box {
+        width: 45%;
+    }
+
+    .dash-card {
+        width: 45%;
+    }
+}
+
+/* ==========================================================
+   📌 LARGE PHONES / SMALL TABLETS (max-width: 768px)
+   ========================================================== */
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        justify-content: space-between;
+        padding: 12px 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* HERO FIX */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 30px;
+    }
+
+    .hero-image img {
+        width: 240px;
+        margin-top: 20px;
+    }
+
+    .features {
+        flex-direction: column;
+        padding: 40px 15px;
+    }
+
+    .feature-box {
+        width: 100%;
+    }
+
+    .about p {
+        width: 100%;
+    }
+
+    .dashboard-grid {
+        justify-content: center;
+    }
+
+    .dash-card {
+        width: 85%;
+    }
+}
+
+/* ==========================================================
+   📌 PHONES (max-width: 480px)
+   ========================================================== */
+@media (max-width: 480px) {
+
+    /* NAVBAR */
+    .navbar {
+        padding: 10px 15px;
+    }
+    .logo img {
+        width: 32px;
+    }
+    .logo span {
+        font-size: 18px;
+    }
+    .login-btn {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    /* HERO */
+    .hero {
+        padding: 25px 15px;
+    }
+    .hero-text h1 {
+        font-size: 24px;
+    }
+    .hero-text p {
+        font-size: 14px;
+    }
+    .hero-image img {
+        width: 200px;
+    }
+
+    /* FEATURES */
+    .features {
+        padding: 20px;
+    }
+    .feature-box h3 {
+        font-size: 18px;
+    }
+    .feature-box p {
+        font-size: 13px;
+    }
+
+    /* DASHBOARD */
+    .dash-title {
+        font-size: 28px;
+    }
+    .dash-card {
+        
+        text-align:center;
+        width: 90%;
+        padding: 18px;
+    }
+    .dash-card h3 {
+        font-size: 17px;
+    }
+    .dash-card p {
+        font-size: 14px;
+    }
+}
+
+/* ==========================================================
+   📌 VERY SMALL PHONES (max-width: 360px)
+   ========================================================== */
+@media (max-width: 360px) {
+    .hero-text h1 {
+        font-size: 20px;
+    }
+    .login-btn {
+        padding: 6px 10px;
+    }
 }

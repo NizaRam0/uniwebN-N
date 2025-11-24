@@ -21,7 +21,7 @@ $patient_name = $_SESSION["UserName"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
-    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 

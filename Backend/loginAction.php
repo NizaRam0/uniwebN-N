@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "dbconx.php";
+require "dbconx.php";//connection to the db is required for login
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 

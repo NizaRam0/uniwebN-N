@@ -1,33 +1,51 @@
 <?php
-header("Content-Type: application/json");
-require "dbconx.php";
+header("Content-Type: application/json"); //make sure to set content type to json so it this page only returns json data
+require "dbconx.php"; //doesnot run if dbconx.php(cinnection to the db) fails
 
 if (!isset($_GET["type"])) {
-    echo json_encode(["error" => "Missing type"]);
+    echo json_encode(["error" => "Missing type"]);//if the type of the request is not set, return an error
     exit();
 }
 
 $type = $_GET["type"];
 $id = isset($_GET["id"]) ? intval($_GET["id"]) : null;
 
+
 switch ($type) {
+// ===========================
+// doctors time slots
+// ===========================
     case "taken_slots":
         if (!$id) { echo json_encode(["error" => "Missing doctor id"]); exit(); }
+        // check if doctor id is provided 
+
     
         $date = isset($_GET["date"]) ? $_GET["date"] : null;
     
         if (!$date) { echo json_encode(["error" => "Missing date"]); exit(); }
+        // check if appointment id is provided 
     
         $sql = "SELECT Appointment_time FROM Appointment
                 WHERE Doctor_id = ? AND Appointment_Date = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$id, $date]);
-    
+        $stmt = $pdo->prepare($sql);  
+        /*It takes your SQL and prepares it so PHP can bind values safely it prevents:
+        SQL injection
+        invalid SQL
+        unsafe string concatenation*/
+        $stmt->execute([$id, $date]); 
+        /*It sends the final SQL to MySQL with the values inserted:
+        The first ? becomes $id
+        The second ? becomes $date*/
+
         echo json_encode($stmt->fetchAll(PDO::FETCH_COLUMN));
         break;
+// Fetch all results from the query as a simple array containing only the Appointment_time column
+// PDO::FETCH_COLUMN ensures we only retrieve the first column from each row
+// Convert the PHP array into JSON format so it can be used by JavaScript on the frontend
+// Echo sends the JSON response back to the client
     
 
-        // ===========================
+ // ===========================
 // PRESCRIPTIONS FOR PATIENT
 // ===========================
 case "prescriptions":
@@ -65,7 +83,7 @@ case "doctors_by_department":
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     break;
 
-    // ===========================
+// ===========================
 // ALL DEPARTMENTS
 // ===========================
 case "departments":
@@ -112,7 +130,7 @@ case "departments":
     case "tests":
         if (!$id) { echo json_encode(["error" => "Missing patient id"]); exit(); }
 
-        $sql = "SELECT T.*, D.First_name AS DoctorFirst, D.Last_name AS DoctorLast
+        $sql = "SELECT T.*, D.First_name AS DoctorFirst, D.Last_name AS DoctorLast /*get doctor name for each test */
                 FROM Medical_Tests T
                 JOIN Doctors D ON T.Doctor_id = D.Doctor_id
                 WHERE T.Patient_id = ?
@@ -144,7 +162,7 @@ case "departments":
 
         $sql = "SELECT D.*, Dep.Department_name
                 FROM Doctors D
-                JOIN Department Dep ON Dep.Department_id = D.Department_id
+                JOIN Department Dep ON Dep.Department_id = D.Department_id /*we use join to get department name from department table*/
                 WHERE Doctor_id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);

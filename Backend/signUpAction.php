@@ -19,12 +19,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: ../front/register.php");
         exit();
     }
-
+    //email validation----------------------------
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION["error"] = "Invalid email format.";
         header("Location: ../front/register.php");
         exit();
     }
+    // Check if email already exists
+    $check = $pdo->prepare("SELECT Email FROM Patients WHERE Email = ?");
+    $check->execute([$email]);
+    if ($check->rowCount() > 0) {
+    $_SESSION["error"] = "Email already exists.";
+    header("Location: ../front/register.php");
+    exit();
+}
+//password strength validation----------------------------
+// Password security checks
+if (strlen($pass) < 8) {
+    $_SESSION["error"] = "Password must be at least 8 characters long.";
+    header("Location: ../front/register.php");
+    exit();
+}
+
+if (!preg_match('/[A-Za-z]/', $pass)) {
+    $_SESSION["error"] = "Password must contain at least one letter.";
+    header("Location: ../front/register.php");
+    exit();
+}
+
+if (!preg_match('/[0-9]/', $pass)) {
+    $_SESSION["error"] = "Password must contain at least one number.";
+    header("Location: ../front/register.php");
+    exit();
+}
+
+if (!preg_match('/[\W_]/', $pass)) {
+    $_SESSION["error"] = "Password must contain at least one special character.";
+    header("Location: ../front/register.php");
+    exit();
+}
 
     // Calculate age automatically
     $today = new DateTime();
