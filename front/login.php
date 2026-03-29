@@ -46,7 +46,7 @@ if(isset($_SESSION["id"])){
 
             <div class="password-wrapper">
                 <input type="password" name="pass" placeholder="Password" required>
-                <a href="#" class="forgot-link">Forgot password?</a>
+                <!--<a href="#" class="forgot-link">Forgot password?</a>-->
             </div>
 
             <button class="login-submit">Login</button>

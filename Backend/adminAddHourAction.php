@@ -1,4 +1,5 @@
 <?php
+//adding office hours for a doctor
 session_start();
 require "dbConx.php";
 

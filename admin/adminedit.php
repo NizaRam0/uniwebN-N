@@ -1,4 +1,5 @@
 <?php
+///edit patient information page for admin
 session_start();
 require "../Backend/dbConx.php";
 

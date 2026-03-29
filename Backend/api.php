@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json"); //make sure to set content type to json so it this page only returns json data
-require "dbconx.php"; //doesnot run if dbconx.php(cinnection to the db) fails
+require "dbConx.php"; //doesnot run if dbconx.php(cinnection to the db) fails
 
 if (!isset($_GET["type"])) {
     echo json_encode(["error" => "Missing type"]);//if the type of the request is not set, return an error

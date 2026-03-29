@@ -25,7 +25,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       2. Today's Appointments
+       2. Today's Appointments-------
     ---------------------------------------------------------- */
     case "today_appointments":
         $stmt = $pdo->prepare("
@@ -41,7 +41,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       3. Upcoming Appointments (Next 7 days)
+       3. Upcoming Appointments (Next 7 days)-----
     ---------------------------------------------------------- */
     case "upcoming_appointments":
         $stmt = $pdo->prepare("
@@ -58,7 +58,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       3b. Update Appointment Status (Completed / Cancelled)
+       3b. Update Appointment Status (Completed / Cancelled)--------
     ---------------------------------------------------------- */
     case "update_appointment_status":
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -92,10 +92,11 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       4. Search Patients (name / DOB)
+       4. Search Patients (name / DOB)-----
     ---------------------------------------------------------- */
     case "search_patient":
         $query = "%" . ($_GET["q"] ?? "") . "%";
+        // Simple search on first name, last name, or DOB
 
         $stmt = $pdo->prepare("
             SELECT *
@@ -108,23 +109,23 @@ switch ($type) {
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
 
-
-    /* ---------------------------------------------------------
-       4b. Patients for this doctor
+/* ---------------------------------------------------------
+         4b. Get all Patients of this Doctor------
     ---------------------------------------------------------- */
-    case "doctor_patients":
-        $stmt = $pdo->prepare("
-            SELECT DISTINCT P.*
-            FROM Appointment A
-            JOIN Patients P ON A.Patient_id = P.Patient_id
-            WHERE A.Doctor_id = ?
-            ORDER BY P.First_name, P.Last_name
-        ");
-        $stmt->execute([$doctor_id]);
-        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-        break;
 
-
+        case "doctor_patients":
+            $stmt = $pdo->prepare("
+                SELECT DISTINCT P.*
+                FROM Appointment A
+                JOIN Patients P ON A.Patient_id = P.Patient_id
+                WHERE A.Doctor_id = ?
+                ORDER BY P.First_name, P.Last_name
+            ");
+            $stmt->execute([$doctor_id]);
+            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+            break;
+   
+        
     /* ---------------------------------------------------------
        4c. Single Patient Profile
     ---------------------------------------------------------- */
@@ -142,7 +143,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       5. Add Medical Note (stored in Medical_Record)
+       5. Add Medical Note (stored in Medical_Record)-------
     ---------------------------------------------------------- */
     case "add_note":
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -198,6 +199,8 @@ switch ($type) {
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             echo json_encode(["error" => "POST required"]);
             exit();
+            //checks if the request method is POST, if not it returns an error message in JSON format and exits the script. 
+            //POST means that data is being sent to the server to create or update a resource.
         }
 
         $patient_id = $_POST["patient_id"] ?? null;
@@ -222,7 +225,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       6b. Get Patient Medications
+       6b. Get Patient Medications-----
     ---------------------------------------------------------- */
     case "patient_medications":
         $patient_id = $_GET["patient_id"] ?? null;
@@ -243,7 +246,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       7. Add Test Result (with optional file upload)
+       7. Add Test Result (with optional file upload)------
     ---------------------------------------------------------- */
     case "add_test":
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -263,7 +266,7 @@ switch ($type) {
 
         $attachmentPath = null;
 
-        if (!empty($_FILES["attachment"]["name"])) {
+       /* if (!empty($_FILES["attachment"]["name"])) {
             $uploadDir = __DIR__ . "/../medias/tests/";
             if (!is_dir($uploadDir)) {
                 @mkdir($uploadDir, 0777, true);
@@ -276,7 +279,7 @@ switch ($type) {
                 // Path to store in DB (relative)
                 $attachmentPath = "medias/tests/" . $fileName;
             }
-        }
+        }*/
 
         $stmt = $pdo->prepare("
             INSERT INTO Medical_Tests 
@@ -290,7 +293,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       8. Get Patient Tests
+       8. Get Patient Tests---------
     ---------------------------------------------------------- */
     case "patient_tests":
         $patient_id = $_GET["patient_id"] ?? null;
@@ -311,7 +314,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       9. Tests for this doctor (pending)
+       9. Tests for this doctor (pending)---------
     ---------------------------------------------------------- */
     case "pending_tests":
         $stmt = $pdo->prepare("
@@ -328,7 +331,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       9b. All tests for this doctor
+       9b. All tests for this doctor-------
     ---------------------------------------------------------- */
     case "all_tests":
         $stmt = $pdo->prepare("
@@ -344,7 +347,7 @@ switch ($type) {
 
 
     /* ---------------------------------------------------------
-       9c. Update Doctor Report for a test
+       9c. Update Doctor Report for a test--------
     ---------------------------------------------------------- */
     case "update_test_report":
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {

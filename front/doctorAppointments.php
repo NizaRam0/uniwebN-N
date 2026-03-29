@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../Backend/dbconx.php";
+require "../Backend/dbConx.php";
 
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] !== true || $_SESSION["role"] !== "doctor") {
     header("Location: login.php");
@@ -127,7 +127,7 @@ async function completeAppointment(id) {
 async function cancelAppointment(id) {
     if (!confirm("Cancel this appointment?")) return;
 
-    const body = new URLSearchParams();
+    const body = new URLSearchParams();//URLSearchParams makes it easy to create URL-encoded data for POST requests
     body.append("appointment_id", id);
     body.append("status", "Cancelled");
 
@@ -145,15 +145,26 @@ async function addNote(patientId) {
     const note = prompt("Enter note about this patient/visit:");
     if (!note) return;
 
-    const body = new URLSearchParams();
-    body.append("patient_id", patientId);
-    body.append("note", note);
+   // Create a form-like data object to send to the backend
+const body = new URLSearchParams();
 
-    const res = await fetch("../Backend/drapi.php?type=add_note", {
-        method: "POST",
-        headers: {"Content-Type": "application/x-www-form-urlencoded"},
-        body
-    });
+// Add the required parameters (key-value pairs)
+body.append("patient_id", patientId);   // ID of the patient the note belongs to
+body.append("note", note);              // The actual note written by the doctor
+
+// Send the data to the backend using a POST request
+const res = await fetch("../Backend/drapi.php?type=add_note", {
+    method: "POST", // We use POST because we are sending data that will modify the database
+
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+        // This tells the server the body is encoded like an HTML form:
+        // key1=value1&key2=value2 ...
+    },
+
+    body // The form data we created above
+});
+
 
     const data = await res.json();
     if (data.success) alert("Note added.");

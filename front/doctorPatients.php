@@ -245,13 +245,14 @@ document.getElementById("addNoteForm").addEventListener("submit", async e => {
     const note = document.getElementById("noteText").value.trim();
     if (!note) return;
 
-    const body = new URLSearchParams();
+    const body = new URLSearchParams(); //built in object hel handles URL params encoding 
     body.append("patient_id", currentPatientId);
     body.append("note", note);
 
     const res = await fetch("../Backend/drapi.php?type=add_note", {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        //indicates the format of the data being sent in the request body like form
         body
     });
     const data = await res.json();

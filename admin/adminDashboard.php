@@ -51,14 +51,12 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
 
     <div class="dashboard-grid">
 
-        <!-- VIEW PATIENTS CARD -->
         <div class="dash-card">
             <h3>View All Patients</h3>
             <p>Manage patient accounts: edit, delete, or add new patients.</p>
             <a href="adminPatients.php" class="btn-small">View Patients</a>
         </div>
 
-        <!-- VIEW DOCTORS CARD -->
         <div class="dash-card">
             <h3>View All Doctors</h3>
             <p>View doctor list, add new doctors, update profiles or remove accounts.</p>

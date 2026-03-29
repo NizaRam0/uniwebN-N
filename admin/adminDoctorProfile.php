@@ -25,14 +25,14 @@ $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$doctor) {
     die("Doctor not found.");
-}
+}//not found
 
-// Fetch all departments
+// Fetch all departments to edit dept
 $dept_stmt = $pdo->prepare("SELECT Department_id, Department_name FROM Department ORDER BY Department_name");
 $dept_stmt->execute();
 $departments = $dept_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch doctor's office hours
+// Fetch doctor's office hours to edit the office hours
 $hours_stmt = $pdo->prepare("
     SELECT id, Weekday, Start_time, End_time, Slot_length
     FROM Doctor_Office_Hours

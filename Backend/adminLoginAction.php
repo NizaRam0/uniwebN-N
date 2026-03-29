@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Basic empty check
     if (empty($email) || empty($pass)) {
         $_SESSION["error"] = "Please enter both email and password.";
-        header("Location: ../front/adminLogin.php");
+        header("Location: ../admin/adminLogin.php");
         exit();
     }
 
@@ -22,14 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Email not found
     if (!$admin) {
         $_SESSION["error"] = "Email not found.";
-        header("Location: ../front/adminLogin.php");
+        header("Location: ../admin/adminLogin.php");
         exit();
     }
 
     // Password verification
     if (!password_verify($pass, $admin["Password"])) {
         $_SESSION["error"] = "Incorrect password.";
-        header("Location: ../front/adminLogin.php");
+        header("Location: ../admin/adminLogin.php");
         exit();
     }
 

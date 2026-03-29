@@ -8,7 +8,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
     exit();
 }
 
-// Check if patient ID was provided
+// Check if patient ID was provided inthe URL
 if (!isset($_GET["id"]) || empty($_GET["id"])) {
     die("Error: No patient ID provided.");
 }

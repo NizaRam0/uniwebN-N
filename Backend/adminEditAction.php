@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "dbconx.php";
+require "dbConx.php";
 
 if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
     header("Location: ../admin/adminLogin.php");
@@ -11,7 +11,7 @@ if (!isset($_POST["patient_id"])) {
     die("No patient ID received.");
 }
 
-$id = (int) $_POST["patient_id"];
+$id = (int) $_POST["patient_id"]; 
 
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];

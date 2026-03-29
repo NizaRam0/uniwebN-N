@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../Backend/dbConx.php";
+require "../Backend/dbconx.php";
 
 // Only admin
 if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
@@ -108,7 +108,7 @@ $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email" required >
         </div>
 
         <div class="form-group">
